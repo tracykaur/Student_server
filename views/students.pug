@@ -2,10 +2,17 @@ html
   head
     title Hello!
   body
-      - let name = "Scott"
-      h1= name
+      h1 Student list:
 
-      h1 Student lists:
       ul
-        li student 1
-        li student 2
+      each student in students
+        li= (student.name + ", City: " + student.city.name) 
+
+      form(action='/students', method='POST')
+        p Add a new student!
+        input(name='student_name')
+        select(name='student_city')
+          each city in cities
+            option(value=city._id)
+              = city.name
+        input(type='submit')
